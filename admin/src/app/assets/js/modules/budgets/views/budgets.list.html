@@ -1,0 +1,58 @@
+<section class="budgets-section">
+  <div class="budgets-header">
+    <h1>Budget</h1>
+  </div>
+
+  <div class="budgets-filters">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" id="name" ng-model="vm.filters.name" placeholder="Filter by name" />
+
+      <label for="client">Client:</label>
+      <input type="text" id="client" ng-model="vm.filters.client" placeholder="Filter by client" />
+    </div>
+    <div>
+      <label for="from">From:</label>
+      <input type="date" id="from" ng-model="vm.filters.from" />
+
+      <label for="to">To:</label>
+      <input type="date" id="to" ng-model="vm.filters.to" />
+    </div>
+  </div>
+
+  <div class="create-budget-container">
+    <button ui-sref="budget-details({ id: 'new' })" class="create-budget-btn">Create Budget</button>
+  </div>
+
+
+  <table class="budgets-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Thumbnail</th>
+        <th>Date</th>
+        <th>Client</th>
+        <th>Total Cost</th>
+        <th>Total Sale</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="budget in vm.budgets">
+        <td>{{ budget.name }}</td>
+        <td>
+          <img ng-src="{{ budget.thumbnail }}" alt="{{ budget.name }}" />
+        </td>
+        <td>{{ budget.date | date }}</td>
+        <td>{{ budget.client }}</td>
+        <td>{{ budget.totalCost | currency }}</td>
+        <td>{{ budget.totalSale | currency }}</td>
+        <td>
+          <button ui-sref="budget-details({ id: budget.id })">Edit</button>
+          <button ng-click="vm.deleteBudget(budget.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</section>

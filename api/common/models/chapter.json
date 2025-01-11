@@ -1,0 +1,51 @@
+{
+  "name": "Chapter",
+  "plural": "Chapters",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "rank": {
+      "type": "number",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "materialSaleCoef": {
+      "type": "number",
+      "required": true
+    },
+    "labourSaleCoef": {
+      "type": "number",
+      "required": true
+    },
+    "totalCostImport": {
+      "type": "number"
+    },
+    "totalSaleImport": {
+      "type": "number"
+    },
+    "budgetId": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "Batches": {
+      "type": "hasMany",
+      "model": "Batch",
+      "foreignKey": "chapterId"
+    },
+    "Budget": {
+      "type": "belongsTo",
+      "model": "Budget",
+      "foreignKey": "budgetId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

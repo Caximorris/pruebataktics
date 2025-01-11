@@ -1,0 +1,75 @@
+<section class="budgets-section">
+    <div class="budgets-header">
+        <h1><span ng-bind="vm.isNew ? 'Create Budget' : 'Edit Budget'"></span></h1>
+    </div>
+
+    <form ng-submit="vm.saveBudget()" class="budget-details-container">
+        <div>
+            <label for="thumbnail">Thumbnail</label>
+            <input type="text" id="thumbnail" ng-model="vm.budget.thumbnail" class="form-control" required />
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" ng-model="vm.budget.name" class="form-control" required />
+        </div>
+        <div>
+            <label for="client">Client:</label>
+            <input type="text" id="client" ng-model="vm.budget.client" class="form-control" required />
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" ng-model="vm.budget.date" class="form-control" required />
+        </div>
+        <div>
+            <label>Total Cost:</label>
+            <span ng-bind="vm.calculateTotalCost() | currency"></span>
+
+            <label>Total Sale:</label>
+            <span ng-bind="vm.calculateTotalSale() | currency"></span>
+        </div>
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+    <div class="create-budget-container">
+        <button ng-click="vm.addChapter()" class="create-budget-btn">Add Chapter</button>
+    </div>
+
+    <table class="budgets-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Description</th>
+                <th>Labour Coeficient</th>
+                <th>Material Coeficient</th>
+                <th>Quantity</th>
+                <th>Labural Cost</th>
+                <th>Material Cost</th>
+                <th>Unit Cost</th>
+                <th>Unit Sale</th>
+                <th>Total Cost</th>
+                <th>Total Sale</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="budget in vm.budgets">
+                <td>{{ budget.rank }}</td>
+                <td>{{ budget.description }}</td>
+                <td>{{ budget.labourCoeficient }}</td>
+                <td>{{ budget.materialCoeficient }}</td>
+                <td>{{ budget.quantity }}</td>
+                <td>{{ budget.laburalCost }}</td>
+                <td>{{ budget.materialCost }}</td>
+                <td>{{ budget.unitCost }}</td>
+                <td>{{ budget.unitSale }}</td>
+                <td>{{ budget.totalCost }}</td>
+                <td>{{ budget.totalSale }}</td>
+                <td>
+                    <button>Add Batch</button>
+                    <button ng-click="vm.deleteBudget(budget.id)">Delete Chapter</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>
